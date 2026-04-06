@@ -1,0 +1,79 @@
+<html>
+        <head><title>Downloaded HTML</title></head>
+        <body>
+            <pre style="white-space: pre-wrap; word-wrap: break-word;"><!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Our Wedding Seating Chart</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #fef9f2; }
+    h1 { text-align: center; color: #b5651d; }
+    input { width: 100%; padding: 12px; margin: 20px 0; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { border: 1px solid #ccc; padding: 12px; text-align: left; }
+    th { background-color: #ffe6cc; }
+    tr:nth-child(even) { background-color: #fff2e6; }
+    tr.highlight { background-color: #ffd699; font-weight: bold; }
+    #notFound { color: red; font-weight: bold; display: none; margin-top: 10px; text-align: center; }
+    @media (max-width: 600px) {
+      th, td { padding: 8px; font-size: 14px; }
+      input { font-size: 14px; padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Find Your Table</h1>
+<p>Type your name below to see your table number:</p>
+<input type="text" id="searchInput" placeholder="Enter your name...">
+
+<table id="guestTable">
+  <thead>
+    <tr>
+      <th>Guest Name</th>
+      <th>Table Number</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Add your guests here -->
+    <tr><td>John Doe</td><td>5</td></tr>
+    <tr><td>Jane Smith</td><td>3</td></tr>
+    <tr><td>Emily Johnson</td><td>1</td></tr>
+    <tr><td>Michael Brown</td><td>2</td></tr>
+    <tr><td>Sarah Davis</td><td>4</td></tr>
+  </tbody>
+</table>
+
+<div id="notFound">Name not found. Please check your spelling.</div>
+
+<script>
+  const input = document.getElementById('searchInput');
+  const table = document.getElementById('guestTable');
+  const notFound = document.getElementById('notFound');
+
+  input.addEventListener('keyup', () => {
+    const filter = input.value.toLowerCase();
+    const rows = table.getElementsByTagName('tr');
+    let found = false;
+
+    for (let i = 1; i < rows.length; i++) { // skip header
+      const nameCell = rows[i].getElementsByTagName('td')[0];
+      if (nameCell && nameCell.textContent.toLowerCase().includes(filter) && filter !== "") {
+        rows[i].classList.add('highlight');
+        rows[i].style.display = '';
+        found = true;
+      } else {
+        rows[i].classList.remove('highlight');
+        rows[i].style.display = filter === "" ? '' : 'none';
+      }
+    }
+
+    notFound.style.display = found || filter === "" ? 'none' : 'block';
+  });
+</script>
+
+</body>
+</html></pre>
+        </body>
+    </html>
